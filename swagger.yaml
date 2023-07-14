@@ -1,0 +1,406 @@
+openapi: 3.0.0
+info:
+  title: Code Testing Platform using Sphere-API
+  contact: {}
+  version: '1.0'
+servers:
+- url: https://comet-lab-backend.vercel.app/api/v1
+  variables: {}
+- url: http://localhost:3000/api/v1
+  variables: {}
+paths:
+  /auth/login:
+    post:
+      tags:
+      - Authentication
+      summary: Login User
+      operationId: LoginUser
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/LoginUserRequest'
+              - example:
+                  email: varnit@gmail.com
+                  password: secret
+            example:
+              email: varnit@gmail.com
+              password: secret
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+      servers:
+      - url: https://comet-lab-backend.vercel.app/api/v1
+        variables: {}
+  /auth/register:
+    post:
+      tags:
+      - Authentication
+      summary: Register User
+      operationId: RegisterUser
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/RegisterUserRequest'
+              - example:
+                  name: sekhar
+                  email: sekharsr@gmail.com
+                  password: secret
+            example:
+              name: sekhar
+              email: sekharsr@gmail.com
+              password: secret
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+      servers:
+      - url: https://comet-lab-backend.vercel.app/api/v1
+        variables: {}
+  /questions:
+    get:
+      tags:
+      - Questions
+      summary: Get All Questions
+      operationId: GetAllQuestions
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+      servers:
+      - url: https://comet-lab-backend.vercel.app/api/v1
+        variables: {}
+    post:
+      tags:
+      - Questions
+      summary: Add Question
+      operationId: AddQuestion
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/AddQuestionRequest'
+              - example:
+                  name: island problem
+                  body: problem is very easy problem to do using matrix and backtraking.
+                  masterjudgeId: 1001
+            example:
+              name: island problem
+              body: problem is very easy problem to do using matrix and backtraking.
+              masterjudgeId: 1001
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+      servers:
+      - url: https://comet-lab-backend.vercel.app/api/v1
+        variables: {}
+  /questions/{id}:
+    parameters:
+      - in: path
+        name: id
+        schema:
+          type: number
+        required: true
+        description: The problemId
+    get:
+      tags:
+      - Questions
+      summary: Get One Question
+      operationId: GetOneQuestion
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+      servers:
+      - url: https://comet-lab-backend.vercel.app/api/v1
+        variables: {}
+    patch:
+      tags:
+      - Questions
+      summary: Update Question
+      operationId: UpdateQuestion
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/UpdateQuestionRequest'
+              - example:
+                  body: ' problem is very easy problem to do using matrix and backtracking.'
+                  masterjudgeId: 1002
+            example:
+              body: ' problem is very easy problem to do using matrix and backtracking.'
+              masterjudgeId: 1002
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+      servers:
+      - url: https://comet-lab-backend.vercel.app/api/v1
+        variables: {}
+    delete:
+      tags:
+      - Questions
+      summary: Delete Question
+      operationId: DeleteQuestion
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+      servers:
+      - url: https://comet-lab-backend.vercel.app/api/v1
+        variables: {}
+  /testCases/{id}:
+    parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+          format: int32
+        required: true
+        description: The problemId
+    get:
+      tags:
+      - TestCases
+      summary: Get Question TestCases
+      operationId: GetQuestionTestCases
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+      servers:
+      - url: https://comet-lab-backend.vercel.app/api/v1
+        variables: {}
+    post:
+      tags:
+      - TestCases
+      summary: Add TestCase
+      operationId: AddTestCase
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/AddTestCaseRequest'
+              - example:
+                  input: Input
+                  output: Output
+                  timelimit: '5'
+                  judgeId: '1'
+            example:
+              input: Input
+              output: Output
+              timelimit: '5'
+              judgeId: '1'
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+      servers:
+      - url: https://comet-lab-backend.vercel.app/api/v1
+        variables: {}
+  /submission:
+    post:
+      tags:
+      - Evalution
+      summary: Evaluate Solution Result
+      operationId: EvaluateSolutionResult
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/EvaluateSolutionResultRequest'
+              - example:   
+                  problemId: 117229
+                  compilerId: 12
+                  source: sourcecode
+            example:
+              problemId: 117229
+              compilerId: 12
+              source: sourcecode
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+      servers:
+      - url: https://comet-lab-backend.vercel.app/api/v1
+        variables: {}
+components:
+  schemas:
+    LoginUserRequest:
+      title: LoginUserRequest
+      required:
+      - email
+      - password
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+      example:
+        email: varnit@gmail.com
+        password: secret
+    RegisterUserRequest:
+      title: RegisterUserRequest
+      required:
+      - name
+      - email
+      - password
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+      example:
+        name: sekhar
+        email: sekharsr@gmail.com
+        password: secret
+    AddQuestionRequest:
+      title: AddQuestionRequest
+      required:
+      - name
+      - body
+      - masterjudgeId
+      type: object
+      properties:
+        name:
+          type: string
+        body:
+          type: string
+        masterjudgeId:
+          type: integer
+          format: int32
+      example:
+        name: island problem
+        body: problem is very easy problem to do using matrix and backtraking.
+        masterjudgeId: 1001
+    UpdateQuestionRequest:
+      title: UpdateQuestionRequest
+      required:
+      - body
+      - masterjudgeId
+      type: object
+      properties:
+        body:
+          type: string
+        masterjudgeId:
+          type: integer
+          format: int32
+      example:
+        body: ' problem is very easy problem to do using matrix and backtracking.'
+        masterjudgeId: 1002
+    AddTestCaseRequest:
+      title: AddTestCaseRequest
+      required:
+      - input
+      - output
+      - timelimit
+      - judgeId
+      type: object
+      properties:
+        input:
+          type: string
+        output:
+          type: string
+        timelimit:
+          type: string
+        judgeId:
+          type: string
+      example:
+        input: Input
+        output: Output
+        timelimit: '5'
+        judgeId: '1'
+    DeleteTestCaseRequest:
+      title: DeleteTestCaseRequest
+      required:
+      - company
+      - position
+      type: object
+      properties:
+        company:
+          type: string
+        position:
+          type: string
+      example:
+        company: adobe
+        position: intern
+    EvaluateSolutionResultRequest:
+      title: EvaluateSolutionResultRequest
+      required:
+      - message
+      type: object
+      properties:
+        message:
+          type: string
+      example:
+        message: wrong
+  securitySchemes:
+    bearer:
+      type: http
+      scheme: bearer
+security: []
+tags:
+- name: Authentication
+- name: Questions
+- name: TestCases
+- name: Evalution

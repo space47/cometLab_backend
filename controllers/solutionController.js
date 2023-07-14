@@ -48,7 +48,7 @@ const evaluateSolution = async (req, res) => {
     questionTitle: isValidQuestion.name,
     result: result,
   });
-  res.status(StatusCodes.CREATED).json({ msg: `Solution is ${result}` });
+  res.status(StatusCodes.CREATED).json({ msg: `Solution is ${result} and result is sended to mail` });
 };
 
 

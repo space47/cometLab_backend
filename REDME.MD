@@ -31,13 +31,23 @@ Submission Route
 -As guided token is valid for 1 day
 -MongoDB for storing the question and user details.
 -Only question is stored in the DB.
+-Added pagination to the route. Route /api/v1/questions only 10 question in one page
 -I have used code refactoring for easy modification by using routers, controllers.
 -Some security library are also used.
 -Created separate controllers for each routes, for auth, question, testCase, submission
 -Created middleware to distinguish b/t admin and participants and for user token verificaton.
 -Crated a differnet file for code structure for sending e-mail. Using ethereal mail service.
 -U have to paste auth object from your ethereal account in my /utils/nodemailerconfig file to see mail in ur inbox folder.
-Created multiple file to handle differet type of errors.
+-Created multiple file to handle differet type of errors.
+
+
+Problem Faced-- Unbale to host the swagger Ui because vercel is not allowing it.
+                Docgen is also not working in vercel when using it to host with express.static.
+                Used vercel because it is fast and not heroku because it needs credit card.
+
+
+
+Please provide the feedback of the assinment.
 
 
 

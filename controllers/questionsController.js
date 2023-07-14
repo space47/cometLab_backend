@@ -67,7 +67,7 @@ const updateQuestion = async (req, res) => {
   const {
     params: { id: problemId },
   } = req;
-  await updateProblem(
+  const response = await updateProblem(
     problemEndPoint,
     problemAccessToken,
     problemId,
